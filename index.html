@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -65,34 +67,6 @@ body {
     color: #777777;
     margin-bottom: 15px;
     text-transform: uppercase;
-}
-   
-.faction-video {
-    width: 100%;
-    max-width: 260px;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    display: block;
-    margin: 10px auto;
-    border: 1px solid #3a3a3a;
-}
-    .result-screen {
-    text-align: center;
-}
-
-.result-screen .question-number {
-    margin-bottom: 0;
-}
-
-.result-screen .question {
-    margin-top: 0;
-}
-
-.result-text {
-    margin-top: 20px;
-    line-height: 1.7;
-    color: #bbbbbb;
 }
 
 h1 {
@@ -169,6 +143,51 @@ h1 {
     background: #3a0b0b;
 }
 
+.back-button {
+    margin-top: 25px;
+    padding: 12px 20px;
+    background: transparent;
+    border: 1px solid #555555;
+    color: #aaaaaa;
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.back-button:hover {
+    border-color: #d40000;
+    color: #ffffff;
+}
+
+.result-screen {
+    text-align: center;
+}
+
+.result-screen .question-number {
+    margin-bottom: 20px;
+}
+
+.result-screen .question {
+    margin-top: 20px;
+}
+
+.result-text {
+    margin-top: 20px;
+    line-height: 1.7;
+    color: #bbbbbb;
+}
+
+.faction-video {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    margin: 10px auto;
+    border: 1px solid #3a3a3a;
+}
+
 @media (max-width: 600px) {
 
     body {
@@ -208,67 +227,45 @@ h1 {
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="header">
+<div class="container">
 
-    <img
-        src="uco-logo.png"
-        alt="Umbrella Corporation Ostrava"
-        class="uco-logo"
-    >
+    <div class="header">
 
-    <div class="umbrella">
-        UMBRELLA CORPORATION OSTRAVA
+        <img
+            src="uco-logo.png"
+            alt="Umbrella Corporation Ostrava"
+            class="uco-logo"
+        >
+
+        <div class="umbrella">
+            UMBRELLA CORPORATION OSTRAVA
+        </div>
+
+        <img
+            src="triage-logo.png"
+            alt="TRIAGE"
+            class="triage-logo"
+        >
+
+        <h1>T.R.I.A.G.E.</h1>
+
+        <div class="subtitle">
+            PERSONNEL ASSESSMENT SYSTEM
+        </div>
+
     </div>
 
-    <img
-        src="triage-logo.png"
-        alt="TRIAGE"
-        class="triage-logo"
-    >
-
-    <h1>T.R.I.A.G.E.</h1>
-
-    <div class="subtitle">
-        PERSONNEL ASSESSMENT SYSTEM
-    </div>
+    <div id="quiz"></div>
 
 </div>
-<div id="quiz">
 
-    <div class="question-number">
-        OTÁZKA 1 / 8
-    </div>
 
-    <div class="question">
-        Máš 15 minut do startu nebezpečné mise. Co si dáš k obědu?
-    </div>
-
-    <div class="answers">
-
-       <button class="answer" onclick="answerSelected('STARS')">
-            Skočím si do bistra na pořádný burger s týmem, potřebuju energii.
-        </button>
-
-       <button class="answer" onclick="answerSelected('UBCS')">
-            Vezmu první balíček MRE, co najdu ve skladu, a otevřu ho za chůze.
-        </button>
-
-      <button class="answer" onclick="answerSelected('USS')">
-            Nepotřebuju jíst, napiju se vody a zkontroluju si zásobníky.
-        </button>
-
-       <button class="answer" onclick="answerSelected('SPECOPS')">
-            Dám si silné espresso a sendvič, musím být ve střehu kvůli novým rozkazům.
-        </button>
-
-    </div>
-
-</div>
-    <script>
+<script>
 
 let scores = {
     STARS: 0,
@@ -279,256 +276,8 @@ let scores = {
 
 let currentQuestion = 1;
 
-function answerSelected(faction) {
-
-    scores[faction]++;
-
-    if (currentQuestion === 1) {
-
-        currentQuestion = 2;
-
-        document.getElementById("quiz").innerHTML = `
-
-            <div class="question-number">
-                OTÁZKA 2 / 8
-            </div>
-
-            <div class="question">
-                Jaké je zvíře z uvedených, tě nejlépe vystihuje?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('STARS')">
-                    Orel
-                </button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">
-                    Vlčák
-                </button>
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    Sova
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-                    Chameleon
-                </button>
-
-            </div>
-
-        `;
-
-    } else if (currentQuestion === 2) {
-
-        currentQuestion = 3;
-
-        document.getElementById("quiz").innerHTML = `
-
-            <div class="question-number">
-                OTÁZKA 3 / 8
-            </div>
-
-            <div class="question">
-                Jaké znamení je vám nejsympatičtější?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('UBCS')">
-                    Oheň
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-                    Vzduch
-                </button>
-
-                <button class="answer" onclick="answerSelected('STARS')">
-                    Voda
-                </button>
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    Země
-                </button>
-
-            </div>
-
-        `;
-
-    } else if (currentQuestion === 3) {
-
-        currentQuestion = 4;
-
-        document.getElementById("quiz").innerHTML = `
-
-            <div class="question-number">
-                OTÁZKA 4 / 8
-            </div>
-
-            <div class="question">
-                Jaké roční období nejlépe vystihuje tvou povahu?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('STARS')">
-                    Jaro
-                </button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">
-                    Léto
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-                    Podzim
-                </button>
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    Zima
-                </button>
-
-            </div>
-
-        `;
-
-    } else if (currentQuestion === 4) {
-
-        currentQuestion = 5;
-
-        document.getElementById("quiz").innerHTML = `
-
-            <div class="question-number">
-                OTÁZKA 5 / 8
-            </div>
-
-            <div class="question">
-                Jaká barva se vám z těchto líbí nejvíce?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('STARS')">
-                    Zelená
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-                    Modrá
-                </button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">
-                    Žlutá
-                </button>
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    Červená
-                </button>
-
-            </div>
-
-        `;
-
-    } else if (currentQuestion === 5) {
-
-        currentQuestion = 6;
-
-        document.getElementById("quiz").innerHTML = `
-
-            <div class="question-number">
-                OTÁZKA 6 / 8
-            </div>
-
-            <div class="question">
-                Která z těchto povah vás nejvíce vystihuje?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    Tichý
-                </button>
-
-                <button class="answer" onclick="answerSelected('STARS')">
-                    Spolehlivý
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-                    Vůdčí
-                </button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">
-                    Aktivní
-                </button>
-
-            </div>
-
-        `;
-
-    } else if (currentQuestion === 6) {
-
-        currentQuestion = 7;
-
-        document.getElementById("quiz").innerHTML = `
-
-            <div class="question-number">
-                OTÁZKA 7 / 8
-            </div>
-
-            <div class="question">
-                Jaký typ dovolené je pro vás nejvíce ideální?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    Sám se toulat v přírodě
-                </button>
-
-                <button class="answer" onclick="answerSelected('STARS')">
-                    S partnerem nebo s kamarádkou někam na wellness nebo někam po Česku
-                </button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">
-                    Někam k moři, kde je kombinace party a klidného odpočinku
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-                    Aktivní dovolená, kde člověk chodí celý den po památkách a večer je společenský program
-                </button>
-
-            </div>
-
-        `;
-
-    } else if (currentQuestion === 7) {
-
-        currentQuestion = 8;
-
-        document.getElementById("quiz").innerHTML = `
-
-            <div class="question-number">
-                OTÁZKA 8 / 8
-            </div>
-
-            <div class="question">
-                Jak si představujete ideální páteční večer?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    S knihou v ruce, v teple domova, kde budete jen vy
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-let scores = {
-    STARS: 0,
-    USS: 0,
-    UBCS: 0,
-    SPECOPS: 0
-};
-
-let currentQuestion = 1;
 let answerHistory = [];
+
 
 function answerSelected(faction) {
 
@@ -546,16 +295,20 @@ function answerSelected(faction) {
     } else {
 
         currentQuestion++;
+
         renderQuestion();
 
     }
 
 }
 
+
 function goBack() {
 
     if (answerHistory.length === 0) {
+
         return;
+
     }
 
     let previousAnswer = answerHistory.pop();
@@ -568,21 +321,27 @@ function goBack() {
 
 }
 
+
 function renderQuestion() {
 
+    let questionHTML = "";
+
     let backButton = "";
+
 
     if (answerHistory.length > 0) {
 
         backButton = `
-            <button class="back-button" onclick="goBack()">
+            <button
+                class="back-button"
+                onclick="goBack()"
+            >
                 ← ZPĚT
             </button>
         `;
 
     }
 
-    let questionHTML = "";
 
     if (currentQuestion === 1) {
 
@@ -598,25 +357,38 @@ function renderQuestion() {
 
             <div class="answers">
 
-                <button class="answer" onclick="answerSelected('STARS')">
+                <button
+                    class="answer"
+                    onclick="answerSelected('STARS')"
+                >
                     Skočím si do bistra na pořádný burger s týmem, potřebuju energii.
                 </button>
 
-                <button class="answer" onclick="answerSelected('UBCS')">
+                <button
+                    class="answer"
+                    onclick="answerSelected('UBCS')"
+                >
                     Vezmu první balíček MRE, co najdu ve skladu, a otevřu ho za chůze.
                 </button>
 
-                <button class="answer" onclick="answerSelected('USS')">
+                <button
+                    class="answer"
+                    onclick="answerSelected('USS')"
+                >
                     Nepotřebuju jíst, napiju se vody a zkontroluju si zásobníky.
                 </button>
 
-                <button class="answer" onclick="answerSelected('SPECOPS')">
+                <button
+                    class="answer"
+                    onclick="answerSelected('SPECOPS')"
+                >
                     Dám si silné espresso a sendvič, musím být ve střehu kvůli novým rozkazům.
                 </button>
 
             </div>
 
         `;
+
 
     } else if (currentQuestion === 2) {
 
@@ -627,7 +399,7 @@ function renderQuestion() {
             </div>
 
             <div class="question">
-                Jaké je zvíře z uvedených, tě nejlépe vystihuje?
+                Jaké zvíře z uvedených tě nejlépe vystihuje?
             </div>
 
             <div class="answers">
@@ -651,6 +423,7 @@ function renderQuestion() {
             </div>
 
         `;
+
 
     } else if (currentQuestion === 3) {
 
@@ -686,6 +459,7 @@ function renderQuestion() {
 
         `;
 
+
     } else if (currentQuestion === 4) {
 
         questionHTML = `
@@ -719,6 +493,7 @@ function renderQuestion() {
             </div>
 
         `;
+
 
     } else if (currentQuestion === 5) {
 
@@ -754,6 +529,7 @@ function renderQuestion() {
 
         `;
 
+
     } else if (currentQuestion === 6) {
 
         questionHTML = `
@@ -788,6 +564,7 @@ function renderQuestion() {
 
         `;
 
+
     } else if (currentQuestion === 7) {
 
         questionHTML = `
@@ -821,6 +598,7 @@ function renderQuestion() {
             </div>
 
         `;
+
 
     } else if (currentQuestion === 8) {
 
@@ -858,6 +636,7 @@ function renderQuestion() {
 
     }
 
+
     document.getElementById("quiz").innerHTML = `
 
         ${questionHTML}
@@ -868,685 +647,222 @@ function renderQuestion() {
 
 }
 
-renderQuestion();
 
 function showResult() {
 
+
     let maxScore = Math.max(
+
         scores.STARS,
         scores.USS,
         scores.UBCS,
         scores.SPECOPS
+
     );
 
+
     let winners = [];
+
 
     for (let faction in scores) {
 
         if (scores[faction] === maxScore) {
+
             winners.push(faction);
+
         }
 
     }
 
-    let recommendation = "";
+
+    let recommendation = winners.join(" / ");
+
     let resultTitle = "";
+
     let resultText = "";
+
 
     if (winners.length === 1) {
 
         recommendation = winners[0];
 
-        if (winners[0] === "STARS") {
-
-            resultTitle = "OCHRÁNCE A SRDCAŘ";
-
-            resultText = "Jsi spolehlivý lídr, který by pro svůj tým obětoval všechno. Máš silný morální kompas a i v naprostém chaosu Raccoon City si zachováváš lidskost a touhu pomáhat.";
-
-        } else if (winners[0] === "USS") {
-
-            resultTitle = "CHLADNOKREVNÝ SMRŤÁK";
-
-            resultText = "Emoce jdou stranou, zajímá tě jen výsledek. Jsi extrémně tichý, precizní a loajální misi. Nejsi tu od toho, abys tvořil přátelství, ale abys splnil úkol s maximální efektivitou.";
-
-        } else if (winners[0] === "UBCS") {
-
-            resultTitle = "PŘEŽIVŠÍ ŽOLDÁK";
-
-            resultText = "Žiješ okamžikem a dokážeš neuvěřitelně rychle improvizovat. Neřešíš vysokou politiku korporací, jde ti o přežití a o to, dostat se z problému živý a s co nejmenšími ztrátami. Jsi mistr chaosu.";
-
-        } else if (winners[0] === "SPECOPS") {
-
-            resultTitle = "VLÁDNÍ STRATÉG A ČISTIČ";
-
-            resultText = "Rád taháš za nitky. Jsi profesionál, který vidí svět v souvislostech a datech. Záleží ti na struktuře, pravidlech a kontrole nad informacemi. Tvá zbraň je tvůj intelekt a schopnost manipulovat situací.";
-
-        }
-
-    } else {
-
-        recommendation = winners.join(" / ");
-
-        if (winners.length === 2) {
-
-            let pair = winners.sort().join("-");
-
-            if (pair === "STARS-USS") {
-
-                resultTitle = "RACIONÁLNÍ HRDINA";
-
-                resultText = "Stojíš na pomezí světla a temnoty. Chceš chránit ostatní a dělat správné věci, ale neváháš k tomu použít brutální, chladnokrevnou efektivitu bez špetky slitování.";
-
-            } else if (pair === "STARS-UBCS") {
-
-                resultTitle = "OSTŘÍLENÝ PŘEŽIVŠÍ";
-
-                resultText = "Máš dobré srdce, ale ulice tě naučila tvrdosti. Funguješ nejlépe v týmu, ale umíš improvizovat, porušovat pravidla a žít ze dne na den.";
-
-            } else if (pair === "SPECOPS-STARS") {
-
-                resultTitle = "TAJNÝ AGENT S MORÁLKOU";
-
-                resultText = "Jsi člověk systému, ale s vlastním svědomím. Ctíš pravidla a hierarchii, ale když zjistíš, že tví šéfové hrají špinavou hru, neváháš jednat na vlastní pěst.";
-
-            } else if (pair === "UBCS-USS") {
-
-                resultTitle = "DOKONALÝ VOJÁK";
-
-                resultText = "Jsi ultimátní žoldák. Z U.B.C.S. máš schopnost přežít v jakémkoliv terénu a z U.S.S. sis vzal absolutní disciplínu.";
-
-            } else if (pair === "SPECOPS-USS") {
-
-                resultTitle = "STÍNOVÝ OPERATIVEc";
-
-                resultText = "Operuješ výhradně za oponou. Sbíráš informace, mažeš důkazy a potichu eliminuješ hrozby. Jsi analytik a operativec v jednom.";
-
-            } else if (pair === "SPECOPS-UBCS") {
-
-                resultTitle = "TAKTICKÝ OPORTUNISTA";
-
-                resultText = "Umíš využívat strukturu a zdroje, ale uvnitř jsi volnomyšlenkář. Když se situace zvrtne, kašleš na protokoly a přecházíš do módu žoldáka.";
-
-            }
-
-        } else if (winners.length === 4) {
-
-            recommendation = "NEZÁVISLÁ PROMĚNNÁ";
-
-            resultTitle = "NEZÁVISLÁ PROMĚNNÁ";
-
-            resultText = "Jsi naprostý chameleón. Nemáš pevnou loajalitu k žádné straně, protože dokážeš perfektně číst situaci a přizpůsobit se jí. Nedáš se zaškatulkovat.";
-
-        } else {
-
-            resultTitle = "NEZAŘADITELNÝ OPERATIVEc";
-
-            resultText = "Výsledky ukazují na kombinaci několika frakcí. Nejsi jednoduchý případ a tvůj herní styl nelze jednoznačně zařadit.";
-
-        }
-
-    }
-
-    let recommendationText = "";
-
-    if (winners.length === 1) {
-
-        if (recommendation === "STARS") {
-            recommendationText = "S.T.A.R.S.";
-        } else if (recommendation === "USS") {
-            recommendationText = "U.S.S.";
-        } else if (recommendation === "UBCS") {
-            recommendationText = "U.B.C.S.";
-        } else if (recommendation === "SPECOPS") {
-            recommendationText = "SPEC OPS";
-        }
-
-    } else {
-
-        recommendationText = winners.map(function(faction) {
-            if (faction === "STARS") return "S.T.A.R.S."; 
-            if (faction === "USS") return "U.S.S."; 
-            if (faction === "UBCS") return "U.B.C.S."; 
-            if (faction === "SPECOPS") return "SPEC OPS"; 
-        
-        }).join(" / "); 
-    
-    } 
-    
-    let videoHTML = "";
-
-if (winners.length === 1) {
-
-    if (winners[0] === "USS") {
-
-        videoHTML = `
-            <video
-                class="faction-video"
-                autoplay
-                loop
-                playsinline
-                controls
-            >
-                <source src="uss_1.mp4" type="video/mp4">
-            </video>
-        `;
-
-    } else if (winners[0] === "STARS") {
-
-        videoHTML = `
-            <video
-                class="faction-video"
-                autoplay
-                loop
-                playsinline
-                controls
-            >
-                <source src="stars_1.mp4" type="video/mp4">
-            </video>
-        `;
-
-    } else if (winners[0] === "UBCS") {
-
-        videoHTML = `
-            <video
-                class="faction-video"
-                autoplay
-                loop
-                playsinline
-                controls
-            >
-                <source src="ubcs_1.mp4" type="video/mp4">
-            </video>
-        `;
-
-    } else if (winners[0] === "SPECOPS") {
-
-        videoHTML = `
-            <video
-                class="faction-video"
-                autoplay
-                loop
-                playsinline
-                controls
-            >
-                <source src="specoops_1.mp4" type="video/mp4">
-            </video>
-        `;
-
-    }
-
-} else {
-
-    videoHTML = `
-        <video
-            class="faction-video"
-            autoplay
-            loop
-            playsinline
-<script>
-
-let scores = {
-    STARS: 0,
-    USS: 0,
-    UBCS: 0,
-    SPECOPS: 0
-};
-
-let currentQuestion = 1;
-let answerHistory = [];
-
-function answerSelected(faction) {
-
-    scores[faction]++;
-
-    answerHistory.push({
-        question: currentQuestion,
-        faction: faction
-    });
-
-    if (currentQuestion === 8) {
-
-        showResult();
-
-    } else {
-
-        currentQuestion++;
-        renderQuestion();
-
-    }
-
-}
-
-function goBack() {
-
-    if (answerHistory.length === 0) {
-        return;
-    }
-
-    let previousAnswer = answerHistory.pop();
-
-    scores[previousAnswer.faction]--;
-
-    currentQuestion = previousAnswer.question;
-
-    renderQuestion();
-
-}
-
-function renderQuestion() {
-
-    let backButton = "";
-
-    if (answerHistory.length > 0) {
-
-        backButton = `
-            <button class="back-button" onclick="goBack()">
-                ← ZPĚT
-            </button>
-        `;
-    }
-
-    let questionHTML = "";
-
-    if (currentQuestion === 1) {
-
-        questionHTML = `
-            <div class="question-number">OTÁZKA 1 / 8</div>
-
-            <div class="question">
-                Máš 15 minut do startu nebezpečné mise. Co si dáš k obědu?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('STARS')">
-                    Skočím si do bistra na pořádný burger s týmem, potřebuju energii.
-                </button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">
-                    Vezmu první balíček MRE, co najdu ve skladu, a otevřu ho za chůze.
-                </button>
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    Nepotřebuju jíst, napiju se vody a zkontroluju si zásobníky.
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-                    Dám si silné espresso a sendvič, musím být ve střehu kvůli novým rozkazům.
-                </button>
-
-            </div>
-        `;
-
-    } else if (currentQuestion === 2) {
-
-        questionHTML = `
-            <div class="question-number">OTÁZKA 2 / 8</div>
-
-            <div class="question">
-                Jaké je zvíře z uvedených, tě nejlépe vystihuje?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('STARS')">Orel</button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">Vlčák</button>
-
-                <button class="answer" onclick="answerSelected('USS')">Sova</button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">Chameleon</button>
-
-            </div>
-        `;
-
-    } else if (currentQuestion === 3) {
-
-        questionHTML = `
-            <div class="question-number">OTÁZKA 3 / 8</div>
-
-            <div class="question">
-                Jaké znamení je vám nejsympatičtější?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('UBCS')">Oheň</button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">Vzduch</button>
-
-                <button class="answer" onclick="answerSelected('STARS')">Voda</button>
-
-                <button class="answer" onclick="answerSelected('USS')">Země</button>
-
-            </div>
-        `;
-
-    } else if (currentQuestion === 4) {
-
-        questionHTML = `
-            <div class="question-number">OTÁZKA 4 / 8</div>
-
-            <div class="question">
-                Jaké roční období nejlépe vystihuje tvou povahu?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('STARS')">Jaro</button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">Léto</button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">Podzim</button>
-
-                <button class="answer" onclick="answerSelected('USS')">Zima</button>
-
-            </div>
-        `;
-
-    } else if (currentQuestion === 5) {
-
-        questionHTML = `
-            <div class="question-number">OTÁZKA 5 / 8</div>
-
-            <div class="question">
-                Jaká barva se vám z těchto líbí nejvíce?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('STARS')">Zelená</button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">Modrá</button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">Žlutá</button>
-
-                <button class="answer" onclick="answerSelected('USS')">Červená</button>
-
-            </div>
-        `;
-
-    } else if (currentQuestion === 6) {
-
-        questionHTML = `
-            <div class="question-number">OTÁZKA 6 / 8</div>
-
-            <div class="question">
-                Která z těchto povah vás nejvíce vystihuje?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('USS')">Tichý</button>
-
-                <button class="answer" onclick="answerSelected('STARS')">Spolehlivý</button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">Vůdčí</button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">Aktivní</button>
-
-            </div>
-        `;
-
-    } else if (currentQuestion === 7) {
-
-        questionHTML = `
-            <div class="question-number">OTÁZKA 7 / 8</div>
-
-            <div class="question">
-                Jaký typ dovolené je pro vás nejvíce ideální?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    Sám se toulat v přírodě
-                </button>
-
-                <button class="answer" onclick="answerSelected('STARS')">
-                    S partnerem nebo s kamarádkou někam na wellness nebo někam po Česku
-                </button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">
-                    Někam k moři, kde je kombinace party a klidného odpočinku
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-                    Aktivní dovolená, kde člověk chodí celý den po památkách a večer je společenský program
-                </button>
-
-            </div>
-        `;
-
-    } else if (currentQuestion === 8) {
-
-        questionHTML = `
-            <div class="question-number">OTÁZKA 8 / 8</div>
-
-            <div class="question">
-                Jak si představujete ideální páteční večer?
-            </div>
-
-            <div class="answers">
-
-                <button class="answer" onclick="answerSelected('USS')">
-                    S knihou v ruce, v teple domova, kde budete jen vy
-                </button>
-
-                <button class="answer" onclick="answerSelected('SPECOPS')">
-                    Stáhnete si film a koupíte si něco dobrého k jídlu
-                </button>
-
-                <button class="answer" onclick="answerSelected('STARS')">
-                    Pozvete si k sobě domů partu kamarádů, se kterými si budete povídat, jíst a hrát společenské hry
-                </button>
-
-                <button class="answer" onclick="answerSelected('UBCS')">
-                    Vyrazíte na party, ze které přijdete až druhý den brzo ráno
-                </button>
-
-            </div>
-        `;
-    }
-
-    document.getElementById("quiz").innerHTML = `
-
-        ${questionHTML}
-
-        ${backButton}
-
-    `;
-}
-
-renderQuestion();
-
-
-function showResult() {
-
-    let maxScore = Math.max(
-        scores.STARS,
-        scores.USS,
-        scores.UBCS,
-        scores.SPECOPS
-    );
-
-    let winners = [];
-
-    for (let faction in scores) {
-
-        if (scores[faction] === maxScore) {
-            winners.push(faction);
-        }
-
-    }
-
-    let recommendation = "";
-    let resultTitle = "";
-    let resultText = "";
-
-    if (winners.length === 1) {
-
-        recommendation = winners[0];
 
         if (winners[0] === "STARS") {
 
             resultTitle = "OCHRÁNCE A SRDCAŘ";
 
-            resultText = "Jsi spolehlivý lídr, který by pro svůj tým obětoval všechno. Máš silný morální kompas a i v naprostém chaosu Raccoon City si zachováváš lidskost a touhu pomáhat.";
+            resultText =
+                "Jsi spolehlivý lídr, který by pro svůj tým obětoval všechno. Máš silný morální kompas a i v naprostém chaosu Raccoon City si zachováváš lidskost a touhu pomáhat.";
 
-        } else if (winners[0] === "USS") {
+        }
+
+
+        else if (winners[0] === "USS") {
 
             resultTitle = "CHLADNOKREVNÝ SMRŤÁK";
 
-            resultText = "Emoce jdou stranou, zajímá tě jen výsledek. Jsi extrémně tichý, precizní a loajální misi. Nejsi tu od toho, abys tvořil přátelství, ale abys splnil úkol s maximální efektivitou.";
+            resultText =
+                "Emoce jdou stranou, zajímá tě jen výsledek. Jsi extrémně tichý, precizní a loajální misi. Nejsi tu od toho, abys tvořil přátelství, ale abys splnil úkol s maximální efektivitou.";
 
-        } else if (winners[0] === "UBCS") {
+        }
+
+
+        else if (winners[0] === "UBCS") {
 
             resultTitle = "PŘEŽIVŠÍ ŽOLDÁK";
 
-            resultText = "Žiješ okamžikem a dokážeš neuvěřitelně rychle improvizovat. Neřešíš vysokou politiku korporací, jde ti o přežití a o to, dostat se z problému živý a s co nejmenšími ztrátami. Jsi mistr chaosu.";
+            resultText =
+                "Žiješ okamžikem a dokážeš neuvěřitelně rychle improvizovat. Neřešíš vysokou politiku korporací, jde ti o přežití a o to, dostat se z problému živý a s co nejmenšími ztrátami. Jsi mistr chaosu.";
 
-        } else if (winners[0] === "SPECOPS") {
+        }
+
+
+        else if (winners[0] === "SPECOPS") {
 
             resultTitle = "VLÁDNÍ STRATÉG A ČISTIČ";
 
-            resultText = "Rád taháš za nitky. Jsi profesionál, který vidí svět v souvislostech a datech. Záleží ti na struktuře, pravidlech a kontrole nad informacemi. Tvá zbraň je tvůj intelekt a schopnost manipulovat situací.";
-
-        }
-
-    } else {
-
-        recommendation = winners.join(" / ");
-
-        if (winners.length === 2) {
-
-            let pair = winners.sort().join("-");
-
-            if (pair === "STARS-USS") {
-
-                resultTitle = "RACIONÁLNÍ HRDINA";
-
-                resultText = "Stojíš na pomezí světla a temnoty. Chceš chránit ostatní a dělat správné věci, ale neváháš k tomu použít brutální, chladnokrevnou efektivitu bez špetky slitování.";
-
-            } else if (pair === "STARS-UBCS") {
-
-                resultTitle = "OSTŘÍLENÝ PŘEŽIVŠÍ";
-
-                resultText = "Máš dobré srdce, ale ulice tě naučila tvrdosti. Funguješ nejlépe v týmu, ale umíš improvizovat, porušovat pravidla a žít ze dne na den.";
-
-            } else if (pair === "SPECOPS-STARS") {
-
-                resultTitle = "TAJNÝ AGENT S MORÁLKOU";
-
-                resultText = "Jsi člověk systému, ale s vlastním svědomím. Ctíš pravidla a hierarchii, ale když zjistíš, že tví šéfové hrají špinavou hru, neváháš jednat na vlastní pěst.";
-
-            } else if (pair === "UBCS-USS") {
-
-                resultTitle = "DOKONALÝ VOJÁK";
-
-                resultText = "Jsi ultimátní žoldák. Z U.B.C.S. máš schopnost přežít v jakémkoliv terénu a z U.S.S. sis vzal absolutní disciplínu.";
-
-            } else if (pair === "SPECOPS-USS") {
-
-                resultTitle = "STÍNOVÝ OPERATIVEc";
-
-                resultText = "Operuješ výhradně za oponou. Sbíráš informace, mažeš důkazy a potichu eliminuješ hrozby. Jsi analytik a operativec v jednom.";
-
-            } else if (pair === "SPECOPS-UBCS") {
-
-                resultTitle = "TAKTICKÝ OPORTUNISTA";
-
-                resultText = "Umíš využívat strukturu a zdroje, ale uvnitř jsi volnomyšlenkář. Když se situace zvrtne, kašleš na protokoly a přecházíš do módu žoldáka.";
-
-            }
-
-        } else if (winners.length === 4) {
-
-            recommendation = "NEZÁVISLÁ PROMĚNNÁ";
-
-            resultTitle = "NEZÁVISLÁ PROMĚNNÁ";
-
-            resultText = "Jsi naprostý chameleón. Nemáš pevnou loajalitu k žádné straně, protože dokážeš perfektně číst situaci a přizpůsobit se jí. Nedáš se zaškatulkovat.";
-
-        } else {
-
-            resultTitle = "NEZAŘADITELNÝ OPERATIVEc";
-
-            resultText = "Výsledky ukazují na kombinaci několika frakcí. Nejsi jednoduchý případ a tvůj herní styl nelze jednoznačně zařadit.";
+            resultText =
+                "Rád taháš za nitky. Jsi profesionál, který vidí svět v souvislostech a datech. Záleží ti na struktuře, pravidlech a kontrole nad informacemi. Tvá zbraň je tvůj intelekt a schopnost manipulovat situací.";
 
         }
 
     }
 
-    let recommendationText = "";
 
-    if (winners.length === 1) {
+    else if (winners.length === 2) {
 
-        if (recommendation === "STARS") recommendationText = "S.T.A.R.S.";
-        else if (recommendation === "USS") recommendationText = "U.S.S.";
-        else if (recommendation === "UBCS") recommendationText = "U.B.C.S.";
-        else if (recommendation === "SPECOPS") recommendationText = "SPEC OPS";
 
-    } else {
+        let pair = [...winners].sort().join("-");
 
-        recommendationText = winners.map(function(faction) {
 
-            if (faction === "STARS") return "S.T.A.R.S.";
-            if (faction === "USS") return "U.S.S.";
-            if (faction === "UBCS") return "U.B.C.S.";
-            if (faction === "SPECOPS") return "SPEC OPS";
+        if (pair === "STARS-USS") {
 
-        }).join(" / ");
+            resultTitle = "RACIONÁLNÍ HRDINA";
+
+            resultText =
+                "Stojíš na pomezí světla a temnoty. Chceš chránit ostatní a dělat správné věci, ale neváháš k tomu použít brutální, chladnokrevnou efektivitu bez špetky slitování.";
+
+        }
+
+
+        else if (pair === "STARS-UBCS") {
+
+            resultTitle = "OSTŘÍLENÝ PŘEŽIVŠÍ";
+
+            resultText =
+                "Máš dobré srdce, ale ulice tě naučila tvrdosti. Funguješ nejlépe v týmu, ale umíš improvizovat, porušovat pravidla a žít ze dne na den.";
+
+        }
+
+
+        else if (pair === "SPECOPS-STARS") {
+
+            resultTitle = "TAJNÝ AGENT S MORÁLKOU";
+
+            resultText =
+                "Jsi člověk systému, ale s vlastním svědomím. Ctíš pravidla a hierarchii, ale když zjistíš, že tví šéfové hrají špinavou hru, neváháš jednat na vlastní pěst.";
+
+        }
+
+
+        else if (pair === "UBCS-USS") {
+
+            resultTitle = "DOKONALÝ VOJÁK";
+
+            resultText =
+                "Jsi ultimátní žoldák. Z U.B.C.S. máš schopnost přežít v jakémkoliv terénu a z U.S.S. sis vzal absolutní disciplínu.";
+
+        }
+
+
+        else if (pair === "SPECOPS-USS") {
+
+            resultTitle = "STÍNOVÝ OPERATIVEC";
+
+            resultText =
+                "Operuješ výhradně za oponou. Sbíráš informace, mažeš důkazy a potichu eliminuješ hrozby. Jsi analytik a operativec v jednom.";
+
+        }
+
+
+        else if (pair === "SPECOPS-UBCS") {
+
+            resultTitle = "TAKTICKÝ OPORTUNISTA";
+
+            resultText =
+                "Umíš využívat strukturu a zdroje, ale uvnitř jsi volnomyšlenkář. Když se situace zvrtne, kašleš na protokoly a přecházíš do módu žoldáka.";
+
+        }
 
     }
 
-    let videoHTML = "";
+
+    else if (winners.length === 4) {
+
+        recommendation = "NEZÁVISLÁ PROMĚNNÁ";
+
+        resultTitle = "NEZÁVISLÁ PROMĚNNÁ";
+
+        resultText =
+            "Jsi naprostý chameleón. Nemáš pevnou loajalitu k žádné straně, protože dokážeš perfektně číst situaci a přizpůsobit se jí. Nedáš se zaškatulkovat.";
+
+    }
+
+
+    else {
+
+        resultTitle = "NEZAŘADITELNÝ OPERATIVEC";
+
+        resultText =
+            "Výsledky ukazují na kombinaci několika frakcí. Nejsi jednoduchý případ a tvůj herní styl nelze jednoznačně zařadit.";
+
+    }
+
+
+    let recommendationText = winners.map(function(faction) {
+
+        if (faction === "STARS") return "S.T.A.R.S.";
+
+        if (faction === "USS") return "U.S.S.";
+
+        if (faction === "UBCS") return "U.B.C.S.";
+
+        if (faction === "SPECOPS") return "SPEC OPS";
+
+    }).join(" / ");
+
+
+    let videoFile = "triage_1.mp4";
+
 
     if (winners.length === 1) {
 
         if (winners[0] === "USS") {
 
-            videoHTML = `
-                <video class="faction-video" autoplay loop playsinline controls>
-                    <source src="uss_1.mp4" type="video/mp4">
-                </video>
-            `;
-
-        } else if (winners[0] === "STARS") {
-
-            videoHTML = `
-                <video class="faction-video" autoplay loop playsinline controls>
-                    <source src="stars_1.mp4" type="video/mp4">
-                </video>
-            `;
-
-        } else if (winners[0] === "UBCS") {
-
-            videoHTML = `
-                <video class="faction-video" autoplay loop playsinline controls>
-                    <source src="ubcs_1.mp4" type="video/mp4">
-                </video>
-            `;
-
-        } else if (winners[0] === "SPECOPS") {
-
-            videoHTML = `
-                <video class="faction-video" autoplay loop playsinline controls>
-                    <source src="specops_1.mp4" type="video/mp4">
-                </video>
-            `;
+            videoFile = "uss_1.mp4";
 
         }
 
-    } else {
+        else if (winners[0] === "STARS") {
 
-        videoHTML = `
-            <video class="faction-video" autoplay loop playsinline controls>
-                <source src="triage_1.mp4" type="video/mp4">
-            </video>
-        `;
+            videoFile = "stars_1.mp4";
+
+        }
+
+        else if (winners[0] === "UBCS") {
+
+            videoFile = "ubcs_1.mp4";
+
+        }
+
+        else if (winners[0] === "SPECOPS") {
+
+            videoFile = "specops_1.mp4";
+
+        }
 
     }
+
 
     document.getElementById("quiz").innerHTML = `
 
@@ -1556,7 +872,20 @@ function showResult() {
                 DOPORUČENÍ: ${recommendationText}
             </div>
 
-            ${videoHTML}
+            <video
+                class="faction-video"
+                autoplay
+                loop
+                playsinline
+                controls
+            >
+
+                <source
+                    src="${videoFile}"
+                    type="video/mp4"
+                >
+
+            </video>
 
             <div class="question">
                 ${resultTitle}
@@ -1572,6 +901,11 @@ function showResult() {
 
 }
 
-    </script>
+
+renderQuestion();
+
+</script>
+
 </body>
+
 </html>
