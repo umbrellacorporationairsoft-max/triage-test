@@ -520,6 +520,327 @@ function answerSelected(faction) {
                 </button>
 
                 <button class="answer" onclick="answerSelected('SPECOPS')">
+let scores = {
+    STARS: 0,
+    USS: 0,
+    UBCS: 0,
+    SPECOPS: 0
+};
+
+let currentQuestion = 1;
+let answerHistory = [];
+
+function answerSelected(faction) {
+
+    scores[faction]++;
+
+    answerHistory.push({
+        question: currentQuestion,
+        faction: faction
+    });
+
+    if (currentQuestion === 8) {
+
+        showResult();
+
+    } else {
+
+        currentQuestion++;
+        renderQuestion();
+
+    }
+
+}
+
+function goBack() {
+
+    if (answerHistory.length === 0) {
+        return;
+    }
+
+    let previousAnswer = answerHistory.pop();
+
+    scores[previousAnswer.faction]--;
+
+    currentQuestion = previousAnswer.question;
+
+    renderQuestion();
+
+}
+
+function renderQuestion() {
+
+    let backButton = "";
+
+    if (answerHistory.length > 0) {
+
+        backButton = `
+            <button class="back-button" onclick="goBack()">
+                ← ZPĚT
+            </button>
+        `;
+
+    }
+
+    let questionHTML = "";
+
+    if (currentQuestion === 1) {
+
+        questionHTML = `
+
+            <div class="question-number">
+                OTÁZKA 1 / 8
+            </div>
+
+            <div class="question">
+                Máš 15 minut do startu nebezpečné mise. Co si dáš k obědu?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Skočím si do bistra na pořádný burger s týmem, potřebuju energii.
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Vezmu první balíček MRE, co najdu ve skladu, a otevřu ho za chůze.
+                </button>
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Nepotřebuju jíst, napiju se vody a zkontroluju si zásobníky.
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Dám si silné espresso a sendvič, musím být ve střehu kvůli novým rozkazům.
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 2) {
+
+        questionHTML = `
+
+            <div class="question-number">
+                OTÁZKA 2 / 8
+            </div>
+
+            <div class="question">
+                Jaké je zvíře z uvedených, tě nejlépe vystihuje?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Orel
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Vlčák
+                </button>
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Sova
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Chameleon
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 3) {
+
+        questionHTML = `
+
+            <div class="question-number">
+                OTÁZKA 3 / 8
+            </div>
+
+            <div class="question">
+                Jaké znamení je vám nejsympatičtější?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Oheň
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Vzduch
+                </button>
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Voda
+                </button>
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Země
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 4) {
+
+        questionHTML = `
+
+            <div class="question-number">
+                OTÁZKA 4 / 8
+            </div>
+
+            <div class="question">
+                Jaké roční období nejlépe vystihuje tvou povahu?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Jaro
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Léto
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Podzim
+                </button>
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Zima
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 5) {
+
+        questionHTML = `
+
+            <div class="question-number">
+                OTÁZKA 5 / 8
+            </div>
+
+            <div class="question">
+                Jaká barva se vám z těchto líbí nejvíce?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Zelená
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Modrá
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Žlutá
+                </button>
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Červená
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 6) {
+
+        questionHTML = `
+
+            <div class="question-number">
+                OTÁZKA 6 / 8
+            </div>
+
+            <div class="question">
+                Která z těchto povah vás nejvíce vystihuje?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Tichý
+                </button>
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Spolehlivý
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Vůdčí
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Aktivní
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 7) {
+
+        questionHTML = `
+
+            <div class="question-number">
+                OTÁZKA 7 / 8
+            </div>
+
+            <div class="question">
+                Jaký typ dovolené je pro vás nejvíce ideální?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Sám se toulat v přírodě
+                </button>
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    S partnerem nebo s kamarádkou někam na wellness nebo někam po Česku
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Někam k moři, kde je kombinace party a klidného odpočinku
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Aktivní dovolená, kde člověk chodí celý den po památkách a večer je společenský program
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 8) {
+
+        questionHTML = `
+
+            <div class="question-number">
+                OTÁZKA 8 / 8
+            </div>
+
+            <div class="question">
+                Jak si představujete ideální páteční večer?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    S knihou v ruce, v teple domova, kde budete jen vy
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
                     Stáhnete si film a koupíte si něco dobrého k jídlu
                 </button>
 
@@ -535,14 +856,19 @@ function answerSelected(faction) {
 
         `;
 
-    } else if (currentQuestion === 8) {
-
-        showResult();
-
     }
+
+    document.getElementById("quiz").innerHTML = `
+
+        ${questionHTML}
+
+        ${backButton}
+
+    `;
 
 }
 
+renderQuestion();
 
 function showResult() {
 
