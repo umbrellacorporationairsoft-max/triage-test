@@ -403,10 +403,13 @@ function showResult() {
 
     }
 
+    let recommendation = "";
     let resultTitle = "";
     let resultText = "";
 
     if (winners.length === 1) {
+
+        recommendation = winners[0];
 
         if (winners[0] === "STARS") {
 
@@ -436,16 +439,99 @@ function showResult() {
 
     } else {
 
-        resultTitle = "VÝSLEDEK NA POHŘEBNÍM HRANICI";
+        recommendation = winners.join(" / ");
 
-        resultText = "Tvoje výsledky ukazují na kombinaci více frakcí. Nejsi jednoduchý případ. V tobě se pere několik různých způsobů myšlení.";
+        if (winners.length === 2) {
+
+            let pair = winners.sort().join("-");
+
+            if (pair === "STARS-USS") {
+
+                resultTitle = "RACIONÁLNÍ HRDINA";
+
+                resultText = "Stojíš na pomezí světla a temnoty. Chceš chránit ostatní a dělat správné věci, ale neváháš k tomu použít brutální, chladnokrevnou efektivitu bez špetky slitování.";
+
+            } else if (pair === "STARS-UBCS") {
+
+                resultTitle = "OSTŘÍLENÝ PŘEŽIVŠÍ";
+
+                resultText = "Máš dobré srdce, ale ulice tě naučila tvrdosti. Funguješ nejlépe v týmu, ale umíš improvizovat, porušovat pravidla a žít ze dne na den.";
+
+            } else if (pair === "SPECOPS-STARS") {
+
+                resultTitle = "TAJNÝ AGENT S MORÁLKOU";
+
+                resultText = "Jsi člověk systému, ale s vlastním svědomím. Ctíš pravidla a hierarchii, ale když zjistíš, že tví šéfové hrají špinavou hru, neváháš jednat na vlastní pěst.";
+
+            } else if (pair === "UBCS-USS") {
+
+                resultTitle = "DOKONALÝ VOJÁK";
+
+                resultText = "Jsi ultimátní žoldák. Z U.B.C.S. máš schopnost přežít v jakémkoliv terénu a z U.S.S. sis vzal absolutní disciplínu.";
+
+            } else if (pair === "SPECOPS-USS") {
+
+                resultTitle = "STÍNOVÝ OPERATIVEc";
+
+                resultText = "Operuješ výhradně za oponou. Sbíráš informace, mažeš důkazy a potichu eliminuješ hrozby. Jsi analytik a operativec v jednom.";
+
+            } else if (pair === "SPECOPS-UBCS") {
+
+                resultTitle = "TAKTICKÝ OPORTUNISTA";
+
+                resultText = "Umíš využívat strukturu a zdroje, ale uvnitř jsi volnomyšlenkář. Když se situace zvrtne, kašleš na protokoly a přecházíš do módu žoldáka.";
+
+            }
+
+        } else if (winners.length === 4) {
+
+            recommendation = "NEZÁVISLÁ PROMĚNNÁ";
+
+            resultTitle = "NEZÁVISLÁ PROMĚNNÁ";
+
+            resultText = "Jsi naprostý chameleón. Nemáš pevnou loajalitu k žádné straně, protože dokážeš perfektně číst situaci a přizpůsobit se jí. Nedáš se zaškatulkovat.";
+
+        } else {
+
+            resultTitle = "NEZAŘADITELNÝ OPERATIVEc";
+
+            resultText = "Výsledky ukazují na kombinaci několika frakcí. Nejsi jednoduchý případ a tvůj herní styl nelze jednoznačně zařadit.";
+
+        }
+
+    }
+
+    let recommendationText = "";
+
+    if (winners.length === 1) {
+
+        if (recommendation === "STARS") {
+            recommendationText = "S.T.A.R.S.";
+        } else if (recommendation === "USS") {
+            recommendationText = "U.S.S.";
+        } else if (recommendation === "UBCS") {
+            recommendationText = "U.B.C.S.";
+        } else if (recommendation === "SPECOPS") {
+            recommendationText = "SPEC OPS";
+        }
+
+    } else {
+
+        recommendationText = winners.map(function(faction) {
+
+            if (faction === "STARS") return "S.T.A.R.S.";
+            if (faction === "USS") return "U.S.S.";
+            if (faction === "UBCS") return "U.B.C.S.";
+            if (faction === "SPECOPS") return "SPEC OPS";
+
+        }).join(" / ");
 
     }
 
     document.getElementById("quiz").innerHTML = `
 
         <div class="question-number">
-            VYHODNOCENÍ
+            DOPORUČENÍ: ${recommendationText}
         </div>
 
         <div class="question">
