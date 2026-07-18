@@ -195,6 +195,42 @@ function answerSelected(faction) {
 
         `;
 
+    } else if (currentQuestion === 3) {
+
+        currentQuestion = 4;
+
+        document.getElementById("quiz").innerHTML = `
+
+            <div class="question-number">
+                OTÁZKA 4 / 8
+            </div>
+
+            <div class="question">
+                Jaké roční období nejlépe vystihuje tvou povahu?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Jaro
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Léto
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Podzim
+                </button>
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Zima
+                </button>
+
+            </div>
+
+        `;
+
     }
 
 }
