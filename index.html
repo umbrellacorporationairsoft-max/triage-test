@@ -134,7 +134,7 @@ function answerSelected(faction) {
             </div>
 
             <div class="question">
-                Jaké zvíře z uvedených tě nejlépe vystihuje?
+                Jaké je zvíře z uvedených, tě nejlépe vystihuje?
             </div>
 
             <div class="answers">
@@ -231,7 +231,241 @@ function answerSelected(faction) {
 
         `;
 
+    } else if (currentQuestion === 4) {
+
+        currentQuestion = 5;
+
+        document.getElementById("quiz").innerHTML = `
+
+            <div class="question-number">
+                OTÁZKA 5 / 8
+            </div>
+
+            <div class="question">
+                Jaká barva se vám z těchto líbí nejvíce?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Zelená
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Modrá
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Žlutá
+                </button>
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Červená
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 5) {
+
+        currentQuestion = 6;
+
+        document.getElementById("quiz").innerHTML = `
+
+            <div class="question-number">
+                OTÁZKA 6 / 8
+            </div>
+
+            <div class="question">
+                Která z těchto povah vás nejvíce vystihuje?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Tichý
+                </button>
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Spolehlivý
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Vůdčí
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Aktivní
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 6) {
+
+        currentQuestion = 7;
+
+        document.getElementById("quiz").innerHTML = `
+
+            <div class="question-number">
+                OTÁZKA 7 / 8
+            </div>
+
+            <div class="question">
+                Jaký typ dovolené je pro vás nejvíce ideální?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Sám se toulat v přírodě
+                </button>
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    S partnerem nebo s kamarádkou někam na wellness nebo někam po Česku
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Někam k moři, kde je kombinace party a klidného odpočinku
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Aktivní dovolená, kde člověk chodí celý den po památkách a večer je společenský program
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 7) {
+
+        currentQuestion = 8;
+
+        document.getElementById("quiz").innerHTML = `
+
+            <div class="question-number">
+                OTÁZKA 8 / 8
+            </div>
+
+            <div class="question">
+                Jak si představujete ideální páteční večer?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    S knihou v ruce, v teple domova, kde budete jen vy
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Stáhnete si film a koupíte si něco dobrého k jídlu
+                </button>
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Pozvete si k sobě domů partu kamarádů, se kterými si budete povídat, jíst a hrát společenské hry
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Vyrazíte na party, ze které přijdete až druhý den brzo ráno
+                </button>
+
+            </div>
+
+        `;
+
+    } else if (currentQuestion === 8) {
+
+        showResult();
+
     }
+
+}
+
+
+function showResult() {
+
+    let maxScore = Math.max(
+        scores.STARS,
+        scores.USS,
+        scores.UBCS,
+        scores.SPECOPS
+    );
+
+    let winners = [];
+
+    for (let faction in scores) {
+
+        if (scores[faction] === maxScore) {
+            winners.push(faction);
+        }
+
+    }
+
+    let resultTitle = "";
+    let resultText = "";
+
+    if (winners.length === 1) {
+
+        if (winners[0] === "STARS") {
+
+            resultTitle = "OCHRÁNCE A SRDCAŘ";
+
+            resultText = "Jsi spolehlivý lídr, který by pro svůj tým obětoval všechno. Máš silný morální kompas a i v naprostém chaosu Raccoon City si zachováváš lidskost a touhu pomáhat.";
+
+        } else if (winners[0] === "USS") {
+
+            resultTitle = "CHLADNOKREVNÝ SMRŤÁK";
+
+            resultText = "Emoce jdou stranou, zajímá tě jen výsledek. Jsi extrémně tichý, precizní a loajální misi. Nejsi tu od toho, abys tvořil přátelství, ale abys splnil úkol s maximální efektivitou.";
+
+        } else if (winners[0] === "UBCS") {
+
+            resultTitle = "PŘEŽIVŠÍ ŽOLDÁK";
+
+            resultText = "Žiješ okamžikem a dokážeš neuvěřitelně rychle improvizovat. Neřešíš vysokou politiku korporací, jde ti o přežití a o to, dostat se z problému živý a s co nejmenšími ztrátami. Jsi mistr chaosu.";
+
+        } else if (winners[0] === "SPECOPS") {
+
+            resultTitle = "VLÁDNÍ STRATÉG A ČISTIČ";
+
+            resultText = "Rád taháš za nitky. Jsi profesionál, který vidí svět v souvislostech a datech. Záleží ti na struktuře, pravidlech a kontrole nad informacemi. Tvá zbraň je tvůj intelekt a schopnost manipulovat situací.";
+
+        }
+
+    } else {
+
+        resultTitle = "VÝSLEDEK NA POHŘEBNÍM HRANICI";
+
+        resultText = "Tvoje výsledky ukazují na kombinaci více frakcí. Nejsi jednoduchý případ. V tobě se pere několik různých způsobů myšlení.";
+
+    }
+
+    document.getElementById("quiz").innerHTML = `
+
+        <div class="question-number">
+            VYHODNOCENÍ
+        </div>
+
+        <div class="question">
+            ${resultTitle}
+        </div>
+
+        <div style="margin-top: 20px; line-height: 1.7; color: #bbbbbb;">
+            ${resultText}
+        </div>
+
+        <div style="margin-top: 30px; border-top: 1px solid #333333; padding-top: 20px; color: #888888;">
+
+            STARS: ${scores.STARS}<br>
+            USS: ${scores.USS}<br>
+            UBCS: ${scores.UBCS}<br>
+            SPEC OPS: ${scores.SPECOPS}
+
+        </div>
+
+    `;
 
 }
 
