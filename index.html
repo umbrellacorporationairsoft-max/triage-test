@@ -157,7 +157,43 @@ function answerSelected(faction) {
             </div>
 
         `;
-    }
+            `;
+
+} else if (currentQuestion === 2) {
+
+    currentQuestion++;
+
+    document.getElementById("quiz").innerHTML = `
+
+        <div class="question-number">
+            OTÁZKA 3 / 8
+        </div>
+
+        <div class="question">
+            Jaké znamení je vám nejsympatičtější?
+        </div>
+
+        <div class="answers">
+
+            <button class="answer" onclick="answerSelected('UBCS')">
+                Oheň
+            </button>
+
+            <button class="answer" onclick="answerSelected('SPECOPS')">
+                Vzduch
+            </button>
+
+            <button class="answer" onclick="answerSelected('STARS')">
+                Voda
+            </button>
+
+            <button class="answer" onclick="answerSelected('USS')">
+                Země
+            </button>
+
+        </div>
+
+    `;
 }
 </script>
 </body>
