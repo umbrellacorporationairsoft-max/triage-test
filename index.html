@@ -74,8 +74,25 @@ body {
     aspect-ratio: 1 / 1;
     object-fit: cover;
     display: block;
-    margin: 25px auto;
+    margin: 10px auto;
     border: 1px solid #3a3a3a;
+}
+    .result-screen {
+    text-align: center;
+}
+
+.result-screen .question-number {
+    margin-bottom: 0;
+}
+
+.result-screen .question {
+    margin-top: 0;
+}
+
+.result-text {
+    margin-top: 20px;
+    line-height: 1.7;
+    color: #bbbbbb;
 }
 
 h1 {
@@ -689,19 +706,27 @@ function showResult() {
     
     } 
     
-    document.getElementById("quiz").innerHTML = ` 
-    
-    <div class="question-number"> 
-    DOPORUČENÍ: ${recommendationText} 
-    </div> 
-    ${videoHTML} 
-    <div class="question"> 
-    ${resultTitle} 
-    </div> 
-    <div style="margin-top: 20px; line-height: 1.7; color: #bbbbbb;"> 
-    ${resultText} 
+  document.getElementById("quiz").innerHTML = `
+
+    <div class="result-screen">
+
+        <div class="question-number">
+            DOPORUČENÍ: ${recommendationText}
+        </div>
+
+        ${videoHTML}
+
+        <div class="question">
+            ${resultTitle}
+        </div>
+
+        <div class="result-text">
+            ${resultText}
+        </div>
+
     </div>
-    `;
+
+`;
 
 }
 
