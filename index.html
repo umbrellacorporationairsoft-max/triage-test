@@ -89,24 +89,33 @@ h1 {
 
     <div class="answers">
 
-        <button class="answer">
+       <button class="answer" onclick="answerSelected()">
             Skočím si do bistra na pořádný burger s týmem, potřebuju energii.
         </button>
 
-        <button class="answer">
+       <button class="answer" onclick="answerSelected()">
             Vezmu první balíček MRE, co najdu ve skladu, a otevřu ho za chůze.
         </button>
 
-        <button class="answer">
+      <button class="answer" onclick="answerSelected()">
             Nepotřebuju jíst, napiju se vody a zkontroluju si zásobníky.
         </button>
 
-        <button class="answer">
+       <button class="answer" onclick="answerSelected()">
             Dám si silné espresso a sendvič, musím být ve střehu kvůli novým rozkazům.
         </button>
 
     </div>
 
 </div>
+    <script>
+function answerSelected() {
+    document.getElementById("quiz").innerHTML = `
+        <div class="question">
+            Odpověď zaznamenána.
+        </div>
+    `;
+}
+</script>
 </body>
 </html>
