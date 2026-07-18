@@ -687,24 +687,69 @@ function showResult() {
     
     } 
     
-    let videoHTML = ""; 
-    
-    if (winners.includes("USS")) { 
-        
-        videoHTML = ` 
-        <video 
-        class="faction-video"
-        autoplay
-        loop
-        playsinline
-        controls 
-        
-        > 
-        <source src="uss_1.mp4" type="video/mp4"> Váš prohlížeč nepodporuje video.
-        </video> 
-        `; 
-    
-    } 
+    let videoHTML = "";
+
+if (winners.length === 1) {
+
+    if (winners[0] === "USS") {
+
+        videoHTML = `
+            <video
+                class="faction-video"
+                autoplay
+                loop
+                playsinline
+                controls
+            >
+                <source src="uss_1.mp4" type="video/mp4">
+            </video>
+        `;
+
+    } else if (winners[0] === "STARS") {
+
+        videoHTML = `
+            <video
+                class="faction-video"
+                autoplay
+                loop
+                playsinline
+                controls
+            >
+                <source src="stars_1.mp4" type="video/mp4">
+            </video>
+        `;
+
+    } else if (winners[0] === "UBCS") {
+
+        videoHTML = `
+            <video
+                class="faction-video"
+                autoplay
+                loop
+                playsinline
+                controls
+            >
+                <source src="ubcs_1.mp4" type="video/mp4">
+            </video>
+        `;
+
+    } else if (winners[0] === "SPECOPS") {
+
+        videoHTML = `
+            <video
+                class="faction-video"
+                autoplay
+                loop
+                playsinline
+                controls
+            >
+                <source src="specops_1.mp4" type="video/mp4">
+            </video>
+        `;
+
+    }
+
+} 
     
   document.getElementById("quiz").innerHTML = `
 
