@@ -7,6 +7,7 @@
 <title>TRIAGE Personnel Assessment</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -14,9 +15,10 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: #080808;
+    background:
+        radial-gradient(circle at center, #1a1a1a 0%, #080808 65%);
     color: #eeeeee;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,36 +27,140 @@ body {
 
 .container {
     width: 100%;
-    max-width: 700px;
-    background: #111111;
-    border: 1px solid #333333;
+    max-width: 720px;
+    background: rgba(15, 15, 15, 0.96);
+    border: 1px solid #3a3a3a;
     padding: 30px;
+    box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.02);
 }
 
 .header {
     text-align: center;
-    border-bottom: 1px solid #333333;
-    padding-bottom: 20px;
+    border-bottom: 1px solid #3a3a3a;
+    padding-bottom: 25px;
     margin-bottom: 30px;
 }
 
 .umbrella {
-    font-size: 14px;
-    letter-spacing: 4px;
-    color: #bdbdbd;
-    margin-bottom: 10px;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: #777777;
+    margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
 h1 {
     margin: 0;
     color: #d40000;
-    letter-spacing: 3px;
+    font-size: 42px;
+    letter-spacing: 8px;
+    font-weight: 700;
+    text-shadow:
+        0 0 10px rgba(212, 0, 0, 0.4);
 }
 
 .subtitle {
-    margin-top: 10px;
+    margin-top: 12px;
     color: #888888;
-    font-size: 14px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+#quiz {
+    width: 100%;
+}
+
+.question-number {
+    color: #d40000;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+.question {
+    font-size: 23px;
+    line-height: 1.4;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #f0f0f0;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.answer {
+    width: 100%;
+    padding: 17px 20px;
+    background: #161616;
+    border: 1px solid #3a3a3a;
+    color: #dddddd;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.45;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+.answer:hover {
+    background: #241010;
+    border-color: #d40000;
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+.answer:active {
+    transform: translateX(2px);
+    background: #3a0b0b;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .container {
+        padding: 22px 18px;
+    }
+
+    h1 {
+        font-size: 32px;
+        letter-spacing: 6px;
+    }
+
+    .umbrella {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .subtitle {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .question {
+        font-size: 20px;
+    }
+
+    .answer {
+        padding: 16px;
+        font-size: 14px;
+    }
+
 }
 
 </style>
