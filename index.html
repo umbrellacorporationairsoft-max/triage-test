@@ -116,22 +116,48 @@ let scores = {
     SPECOPS: 0
 };
 
+let currentQuestion = 1;
+
 function answerSelected(faction) {
 
     scores[faction]++;
 
-    document.getElementById("quiz").innerHTML = `
-        <div class="question">
-            Odpověď zaznamenána.
-        </div>
+    if (currentQuestion === 1) {
 
-        <div style="margin-top: 20px; color: #888;">
-            STARS: ${scores.STARS}<br>
-            USS: ${scores.USS}<br>
-            UBCS: ${scores.UBCS}<br>
-            SPEC OPS: ${scores.SPECOPS}
-        </div>
-    `;
+        currentQuestion++;
+
+        document.getElementById("quiz").innerHTML = `
+
+            <div class="question-number">
+                OTÁZKA 2 / 8
+            </div>
+
+            <div class="question">
+                Jaké zvíře z uvedených tě nejlépe vystihuje?
+            </div>
+
+            <div class="answers">
+
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Orel
+                </button>
+
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Vlčák
+                </button>
+
+                <button class="answer" onclick="answerSelected('USS')">
+                    Sova
+                </button>
+
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Chameleon
+                </button>
+
+            </div>
+
+        `;
+    }
 }
 </script>
 </body>
