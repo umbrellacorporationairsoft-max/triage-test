@@ -89,7 +89,7 @@ h1 {
 
     <div class="answers">
 
-       <button class="answer" onclick="answerSelected()">
+       <button class="answer" onclick="answerSelected('STARS')">
             Skočím si do bistra na pořádný burger s týmem, potřebuju energii.
         </button>
 
@@ -109,10 +109,19 @@ h1 {
 
 </div>
     <script>
-function answerSelected() {
+let score = 0;
+
+function answerSelected(faction) {
+
+    score++;
+
     document.getElementById("quiz").innerHTML = `
         <div class="question">
             Odpověď zaznamenána.
+        </div>
+
+        <div style="margin-top: 20px; color: #888;">
+            Zatím získané body: ${score}
         </div>
     `;
 }
