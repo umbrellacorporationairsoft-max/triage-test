@@ -650,30 +650,46 @@ function showResult() {
     } else {
 
         recommendationText = winners.map(function(faction) {
-
-            if (faction === "STARS") return "S.T.A.R.S.";
-            if (faction === "USS") return "U.S.S.";
-            if (faction === "UBCS") return "U.B.C.S.";
-            if (faction === "SPECOPS") return "SPEC OPS";
-
-        }).join(" / ");
-
-    }
-
-    document.getElementById("quiz").innerHTML = `
-
-        <div class="question-number">
-            DOPORUČENÍ: ${recommendationText}
-        </div>
-
-        <div class="question">
-            ${resultTitle}
-        </div>
-
-        <div style="margin-top: 20px; line-height: 1.7; color: #bbbbbb;">
-            ${resultText}
-        </div>
-
+            if (faction === "STARS") return "S.T.A.R.S."; 
+            if (faction === "USS") return "U.S.S."; 
+            if (faction === "UBCS") return "U.B.C.S."; 
+            if (faction === "SPECOPS") return "SPEC OPS"; 
+        
+        }).join(" / "); 
+    
+    } 
+    
+    let videoHTML = ""; 
+    
+    if (winners.includes("USS")) { 
+        
+        videoHTML = ` 
+        <video 
+        class="faction-video"
+        autoplay
+        loop
+        playsinline
+        controls 
+        
+        > 
+        <source src="uss_1.mp4" type="video/mp4"> Váš prohlížeč nepodporuje video.
+        </video> 
+        `; 
+    
+    } 
+    
+    document.getElementById("quiz").innerHTML = ` 
+    
+    <div class="question-number"> 
+    DOPORUČENÍ: ${recommendationText} 
+    </div> 
+    ${videoHTML} 
+    <div class="question"> 
+    ${resultTitle} 
+    </div> 
+    <div style="margin-top: 20px; line-height: 1.7; color: #bbbbbb;"> 
+    ${resultText} 
+    </div>
     `;
 
 }
