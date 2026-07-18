@@ -749,7 +749,21 @@ if (winners.length === 1) {
 
     }
 
-} 
+} else {
+
+    videoHTML = `
+        <video
+            class="faction-video"
+            autoplay
+            loop
+            playsinline
+            controls
+        >
+            <source src="triage_1.mp4" type="video/mp4">
+        </video>
+    `;
+
+}
     
   document.getElementById("quiz").innerHTML = `
 
