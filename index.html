@@ -1,1 +1,436 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>TRIAGE Personnel Assessment</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: #080808;
+        color: #eeeeee;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 700px;
+        background: #111111;
+        border: 1px solid #333333;
+        box-shadow: 0 0 30px rgba(180, 0, 0, 0.25);
+        padding: 30px;
+    }
+
+    .header {
+        text-align: center;
+        border-bottom: 1px solid #333333;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+    }
+
+    .umbrella {
+        font-size: 14px;
+        letter-spacing: 4px;
+        color: #bdbdbd;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        margin: 0;
+        color: #d40000;
+        letter-spacing: 3px;
+        font-size: 28px;
+    }
+
+    .subtitle {
+        margin-top: 10px;
+        color: #888888;
+        font-size: 14px;
+    }
+
+    .question-number {
+        color: #d40000;
+        font-size: 13px;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+
+    .question {
+        font-size: 22px;
+        line-height: 1.4;
+        margin-bottom: 25px;
+    }
+
+    .answers {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .answer {
+        width: 100%;
+        padding: 16px;
+        background: #191919;
+        color: #eeeeee;
+        border: 1px solid #444444;
+        text-align: left;
+        cursor: pointer;
+        font-size: 15px;
+        transition: 0.2s;
+    }
+
+    .answer:hover {
+        border-color: #d40000;
+        background: #241010;
+    }
+
+    .progress {
+        margin-top: 25px;
+        height: 5px;
+        background: #292929;
+    }
+
+    .progress-bar {
+        height: 100%;
+        background: #d40000;
+        width: 0%;
+        transition: 0.3s;
+    }
+
+    .result {
+        text-align: center;
+    }
+
+    .result h2 {
+        color: #d40000;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .result-text {
+        color: #cccccc;
+        line-height: 1.7;
+        text-align: left;
+        white-space: pre-line;
+    }
+
+    .restart {
+        margin-top: 30px;
+        padding: 15px 25px;
+        background: #d40000;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .restart:hover {
+        background: #a00000;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="umbrella">UMBRELLA CORPORATION OSTRAVA</div>
+        <h1>TRIAGE</h1>
+        <div class="subtitle">PERSONNEL ASSESSMENT SYSTEM</div>
+    </div>
+
+    <div id="quiz"></div>
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        question: "Máš 15 minut do startu nebezpečné mise. Co si dáš k obědu?",
+        answers: [
+            ["Skočím si do bistra na pořádný burger s týmem, potřebuju energii.", "STARS"],
+            ["Vezmu první balíček MRE, co najdu ve skladu, a otevřu ho za chůze.", "UBCS"],
+            ["Nepotřebuju jíst, napiju se vody a zkontroluju si zásobníky.", "USS"],
+            ["Dám si silné espresso a sendvič, musím být ve střehu kvůli novým rozkazům.", "SPECOPS"]
+        ]
+    },
+
+    {
+        question: "Jaké zvíře z uvedených tě nejlépe vystihuje?",
+        answers: [
+            ["Orel", "STARS"],
+            ["Vlčák", "UBCS"],
+            ["Sova", "USS"],
+            ["Chameleon", "SPECOPS"]
+        ]
+    },
+
+    {
+        question: "Jaké znamení je vám nejsympatičtější?",
+        answers: [
+            ["Oheň", "UBCS"],
+            ["Vzduch", "SPECOPS"],
+            ["Voda", "STARS"],
+            ["Země", "USS"]
+        ]
+    },
+
+    {
+        question: "Jaké roční období nejlépe vystihuje tvou povahu?",
+        answers: [
+            ["Jaro", "STARS"],
+            ["Léto", "UBCS"],
+            ["Podzim", "SPECOPS"],
+            ["Zima", "USS"]
+        ]
+    },
+
+    {
+        question: "Jaká barva se vám z těchto líbí nejvíce?",
+        answers: [
+            ["Zelená", "STARS"],
+            ["Modrá", "SPECOPS"],
+            ["Žlutá", "UBCS"],
+            ["Červená", "USS"]
+        ]
+    },
+
+    {
+        question: "Která z těchto povah vás nejvíce vystihuje?",
+        answers: [
+            ["Tichý", "USS"],
+            ["Spolehlivý", "STARS"],
+            ["Vůdčí", "SPECOPS"],
+            ["Aktivní", "UBCS"]
+        ]
+    },
+
+    {
+        question: "Jaký typ dovolené je pro vás nejvíce ideální?",
+        answers: [
+            ["Sám se toulat v přírodě", "USS"],
+            ["S partnerem nebo s kamarádkou někam na wellness nebo někam po Česku", "STARS"],
+            ["Někam k moři, kde je kombinace party a klidného odpočinku", "UBCS"],
+            ["Aktivní dovolená, kde člověk chodí celý den po památkách a večer je společenský program", "SPECOPS"]
+        ]
+    },
+
+    {
+        question: "Jak si představujete ideální páteční večer?",
+        answers: [
+            ["S knihou v ruce, v teple domova, kde budete jen vy", "USS"],
+            ["Stáhnete si film a koupíte si něco dobrého k jídlu", "SPECOPS"],
+            ["Pozvete si k sobě domů partu kamarádů, se kterými si budete povídat, jíst a hrát společenské hry", "STARS"],
+            ["Vyrazíte na party, ze které přijdete až druhý den brzo ráno", "UBCS"]
+        ]
+    }
+
+];
+
+let currentQuestion = 0;
+
+let scores = {
+    STARS: 0,
+    USS: 0,
+    UBCS: 0,
+    SPECOPS: 0
+};
+
+const results = {
+
+    STARS: {
+        title: "OCHRÁNCE A SRDCAŘ",
+        text: "Jsi spolehlivý lídr, který by pro svůj tým obětoval všechno. Máš silný morální kompas a i v naprostém chaosu Raccoon City si zachováváš lidskost a touhu pomáhat."
+    },
+
+    USS: {
+        title: "CHLADNOKREVNÝ SMRŤÁK",
+        text: "Emoce jdou stranou, zajímá tě jen výsledek. Jsi extrémně tichý, precizní a loajální misi. Nejsi tu od toho, abys tvořil přátelství, ale abys splnil úkol s maximální efektivitou."
+    },
+
+    UBCS: {
+        title: "PŘEŽIVŠÍ ŽOLDÁK",
+        text: "Žiješ okamžikem a dokážeš neuvěřitelně rychle improvizovat. Neřešíš vysokou politiku korporací, jde ti o přežití a o to, dostat se z problému živý a s co nejmenšími ztrátami. Jsi mistr chaosu."
+    },
+
+    SPECOPS: {
+        title: "VLÁDNÍ STRATÉG A ČISTIČ",
+        text: "Rád taháš za nitky. Jsi profesionál, který vidí svět v souvislostech a datech. Záleží ti na struktuře, pravidlech a kontrole nad informacemi. Tvá zbraň je tvůj intelekt a schopnost manipulovat situací."
+    }
+
+};
+
+const combinations = {
+
+    "STARS-USS": {
+        title: "RACIONÁLNÍ HRDINA",
+        text: "Stojíš na pomezí světla a temnoty. Chceš chránit ostatní a dělat správné věci (S.T.A.R.S.), ale neváháš k tomu použít brutální, chladnokrevnou efektivitu bez špetky slitování (U.S.S.). Jsi jako Chris Redfield v pozdějších dílech – zlomený hrdina, který jedná jako stroj."
+    },
+
+    "STARS-UBCS": {
+        title: "OSTŘÍLENÝ PŘEŽIVŠÍ",
+        text: "Máš dobré srdce, ale ulice tě naučila tvrdosti. Funguješ nejlépe v týmu, ale na rozdíl od upjatých policistů umíš improvizovat, porušovat pravidla a žít ze dne na den. Přesně jako spojenectví Jill a Carlose."
+    },
+
+    "STARS-SPECOPS": {
+        title: "TAJNÝ AGENT S MORÁLKOU",
+        text: "Jsi člověk systému, ale s vlastním svědomím. Pracuješ pro vládu nebo vyšší instituci, ctíš pravidla a hierarchii, ale když zjistíš, že tví šéfové hrají špinavou hru, neváháš jednat na vlastní pěst pro dobro věci. Typický Leon S. Kennedy."
+    },
+
+    "USS-UBCS": {
+        title: "DOKONALÝ VOJÁK",
+        text: "Jsi ultimátní žoldák. Z U.B.C.S. máš schopnost přežít v jakémkoliv terénu a z U.S.S. sis vzal absolutní disciplínu. Jsi smrtelně nebezpečný jedinec, který udělá cokoliv, pokud je za to dobře zaplaceno."
+    },
+
+    "USS-SPECOPS": {
+        title: "STÍNOVÝ OPERATIVE C",
+        text: "Operuješ výhradně za oponou. Nemáš zájem o přeživší ani o boj v přední linii. Sbíráš informace, mažeš důkazy a potichu eliminuješ hrozby. Jsi naprosto nedosažitelný analytik a zabiják v jednom. Atmosféra Ady Wong."
+    },
+
+    "UBCS-SPECOPS": {
+        title: "TAKTICKÝ OPORTUNISTA",
+        text: "Umíš využívat vládní zdroje a strukturu, ale uvnitř jsi volnomyšlenkář. Když se situace zvrtne, kašleš na protokoly Spec Ops a přecházíš do módu žoldáka, který zachraňuje jen vlastní kůži."
+    }
+
+};
+
+function showQuestion() {
+
+    const quiz = document.getElementById("quiz");
+
+    const q = questions[currentQuestion];
+
+    let html = `
+        <div class="question-number">
+            OTÁZKA ${currentQuestion + 1} / ${questions.length}
+        </div>
+
+        <div class="question">
+            ${q.question}
+        </div>
+
+        <div class="answers">
+    `;
+
+    q.answers.forEach(answer => {
+
+        html += `
+            <button class="answer" onclick="selectAnswer('${answer[1]}')">
+                ${answer[0]}
+            </button>
+        `;
+
+    });
+
+    html += `</div>`;
+
+    quiz.innerHTML = html;
+
+    const progress = ((currentQuestion) / questions.length) * 100;
+
+    document.getElementById("progressBar").style.width = progress + "%";
+}
+
+function selectAnswer(faction) {
+
+    scores[faction]++;
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+    } else {
+
+        showResult();
+
+    }
+
+}
+
+function showResult() {
+
+    document.getElementById("progressBar").style.width = "100%";
+
+    const sorted = Object.entries(scores)
+        .sort((a, b) => b[1] - a[1]);
+
+    const highestScore = sorted[0][1];
+
+    const topFactions = sorted
+        .filter(item => item[1] === highestScore)
+        .map(item => item[0]);
+
+    let result;
+
+    if (topFactions.length === 1) {
+
+        result = results[topFactions[0]];
+
+    } else if (topFactions.length === 2) {
+
+        const key = topFactions.sort().join("-");
+
+        result = combinations[key];
+
+    } else {
+
+        result = {
+
+            title: "NEZÁVISLÁ PROMĚNNÁ",
+
+            text: "Jsi naprostý chameleón. Nemáš pevnou loajalitu k žádné straně, protože dokážeš perfektně číst situaci a přizpůsobit se jí. Jednou pomůžeš přeživším, podruhé si vezmeš vládní zakázku a potřetí ukradneš vzorek viru jen pro sebe. Nedáš se zaškatulkovat."
+
+        };
+
+    }
+
+    document.getElementById("quiz").innerHTML = `
+
+        <div class="result">
+
+            <div class="question-number">
+                ANALÝZA DOKONČENA
+            </div>
+
+            <h2>${result.title}</h2>
+
+            <div class="result-text">
+                ${result.text}
+            </div>
+
+            <button class="restart" onclick="location.reload()">
+                OPAKOVAT TEST
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
