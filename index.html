@@ -109,6 +109,7 @@ h1 {
 
 </div>
     <script>
+
 let scores = {
     STARS: 0,
     USS: 0,
@@ -124,7 +125,7 @@ function answerSelected(faction) {
 
     if (currentQuestion === 1) {
 
-        currentQuestion++;
+        currentQuestion = 2;
 
         document.getElementById("quiz").innerHTML = `
 
@@ -158,42 +159,46 @@ function answerSelected(faction) {
 
         `;
 
-} else if (currentQuestion === 2) {
+    } else if (currentQuestion === 2) {
 
-    currentQuestion++;
+        currentQuestion = 3;
 
-    document.getElementById("quiz").innerHTML = `
+        document.getElementById("quiz").innerHTML = `
 
-        <div class="question-number">
-            OTÁZKA 3 / 8
-        </div>
+            <div class="question-number">
+                OTÁZKA 3 / 8
+            </div>
 
-        <div class="question">
-            Jaké znamení je vám nejsympatičtější?
-        </div>
+            <div class="question">
+                Jaké znamení je vám nejsympatičtější?
+            </div>
 
-        <div class="answers">
+            <div class="answers">
 
-            <button class="answer" onclick="answerSelected('UBCS')">
-                Oheň
-            </button>
+                <button class="answer" onclick="answerSelected('UBCS')">
+                    Oheň
+                </button>
 
-            <button class="answer" onclick="answerSelected('SPECOPS')">
-                Vzduch
-            </button>
+                <button class="answer" onclick="answerSelected('SPECOPS')">
+                    Vzduch
+                </button>
 
-            <button class="answer" onclick="answerSelected('STARS')">
-                Voda
-            </button>
+                <button class="answer" onclick="answerSelected('STARS')">
+                    Voda
+                </button>
 
-            <button class="answer" onclick="answerSelected('USS')">
-                Země
-            </button>
+                <button class="answer" onclick="answerSelected('USS')">
+                    Země
+                </button>
 
-        </div>
+            </div>
 
-    `;
+        `;
+
+    }
+
 }
+
 </script>
 </body>
 </html>
